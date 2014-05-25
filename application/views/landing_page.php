@@ -11,7 +11,9 @@
 			<div class="well">
 				<h1>Ciudadanos</h1>
 				<p>Recibe en tu correo y Celular notificaciones de sucesos de actualidad en tus áreas de interes, curados por Colectivos y Sociedades Civiles.</p>
-				<p><a href="/signin/subscriber" class="btn btn-primary btn-lg">¡Subscribete!</a></p>	
+				<?php if(!$_is_logged_in_): ?>
+					<p><a href="/signin/subscriber" class="btn btn-primary btn-lg">¡Subscribete!</a></p>	
+				<?php endif; ?>
 			</div>
 		</div>
 

@@ -2,24 +2,7 @@
 
 class Subscriber extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-
-	public function edit()
-	{
+	public function edit() {
 		$user = $this->user_model->getLoggedInUser();
 		$categories = $this->category_model->getAll();
 		$categories_rich =array();
@@ -68,31 +51,6 @@ class Subscriber extends CI_Controller {
 		echo json_encode(array(
 			'status' => true
 		));
-	}
-	
-	public function view() {
-		if(!$campaign = $this->campaign_model->getByPrettyURL($this->uri->segment(2))) {
-			$this->user_model->setFlash("That Campaign doesn't exists", 'error');
-			redirect(base_url('/'));
-		}	
-		
-		$data = array();
-		$data['campaign'] = $campaign;
-		
-		if ($this->user_model->isLoggedIn()) {
-			$user = $this->user_model->getLoggedInUser();
-			$data['is_owner'] = ($user->user_id==$campaign->user_id);
-		} else {
-			if($pending_campaign_id = $this->session->userdata('pending_campaign_id')){
-				$data['pending_campaign_id'] = $pending_campaign_id;
-				$data['is_owner'] = ($campaign->campaign_id==$pending_campaign_id);
-			} else {
-				$data['is_owner'] = false;
-			}
-		}
-		
-		
-		$this->layout->view('campaign/view', $data);
 	}
 }
 

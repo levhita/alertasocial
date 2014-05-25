@@ -37,9 +37,14 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<?php if($_is_logged_in_): ?>
-				<li><a href="/account/"><i class="fa fa-user fa-lg"></i>
-					<?php echo htmlentities($this->session->userdata('user')->username); ?>
-				</a></li>
+				<li>
+					<?php if($this->session->userdata('user')->type=='subscriber'): ?>	
+						<a href="/subscriber/edit"><i class="fa fa-user fa-lg"></i>
+					<?php else: ?>
+						<a href="/ong/edit"><i class="fa fa-user fa-lg"></i>
+					<?php endif;?>
+					<?php echo htmlentities($this->session->userdata('user')->username); ?></a>
+				</li>
 				<li><a href="/signout"><i class="fa fa-sign-out fa-lg"></i>
 					Cerrar Sesión
 				</a></li>
@@ -57,7 +62,7 @@
 <div class="container">
 	<div class="alert <?php echo $_flash_['class']?> alert-dismissable">
 	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	  <strong><?php echo $_flash_['label']?></strong> <?php echo htmlentities($_flash_['message'])?>
+	  <strong><?php echo $_flash_['label']?>:</strong> <?php echo htmlentities($_flash_['message'])?>
 	</div>
 </div>
 <?php endif; ?>

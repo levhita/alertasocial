@@ -56,13 +56,19 @@ class User_model extends CI_Model {
         if( $type=='error' || $type=='notice' || $type=='success' || $type=='info' || $type=='warning' || $type=='danger' ) {
             if ( $type=='error' ) {
                 $flash['class']     ='alert-danger';
-                $flash['label']     ='Error!';
+                $flash['label']     ='¡Error!';
             } else if ( $type=='notice' ) {
                 $flash['class']     ='alert-info';
-                $flash['label']     ='Notice:';
+                $flash['label']     ='Aviso';
             } else {
                 $flash['class']     ='alert-'.$type;
-                $flash['label']     = ucfirst($type).'!';
+                if($type=='info'){
+                    $flash['label']     = 'Información';
+                } else if($type=='success'){
+                    $flash['label']     = '¡Éxito!';
+                } else {
+                    $flash['label']     = ucfirst($type).'!';
+                }
             }
             $this->session->set_userdata('flash', $flash);
         }

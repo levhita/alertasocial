@@ -102,6 +102,10 @@ class Twitter extends CI_Controller
 					'twitter_user_id' => $access_token['user_id'],
 				);
 				
+				if ( $this->session->userdata('new_ong') ) {
+					$twitter_data['type'] = 'ong';
+				}
+				
 				$user_id = $this->user_model->userExists($twitter_data['twitter_user_id']);
 				
 				if ($user_id===false) {
@@ -123,7 +127,7 @@ class Twitter extends CI_Controller
 				
 				if ( $this->session->userdata('new_ong') ) {
 					$this->session->unset_userdata('new_ong');
-					redirect(base_url('/ong/filldata'));	
+					redirect(base_url('/ong/edit'));	
 				}
 
 				if ( $this->session->userdata('new_subscriber') ) {
