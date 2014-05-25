@@ -2,17 +2,17 @@
 
 class Alert extends CI_Controller {
 
-	public function edit()
-	{
+	public function edit() {
 		
 		if (!$this->user_model->isLoggedIn()) {
 			$this->user_model->setFlash("Necesitas iniciar sesión para publicar una alerta", 'error');
 			redirect(base_url('/'));
 			return;
 		}
+		
 		$alert_id = $this->uri->segment(3);
 		$user = $this->user_model->getLoggedInUser();
-		if(!empty($alert_id)){
+		if (!empty($alert_id)) {
 			$alert = $this->alert_model->get($alert_id);
 			if (!$alert) {
 				echo "//TODO: send badrequest error campaign doesn't exist";
@@ -79,28 +79,22 @@ class Alert extends CI_Controller {
 	}
 	
 	public function view() {
-		if(!$campaign = $this->campaign_model->getByPrettyURL($this->uri->segment(2))) {
-			$this->user_model->setFlash("That Campaign doesn't exists", 'error');
+		$alert_id = $this->uri->segment(3);
+		if(!$alert = $this->alert_model->get($alert_id)) {
+			$this->user_model->setFlash("Esa alerta no existe.", 'error');
 			redirect(base_url('/'));
 		}	
 		
-		$data = array();
-		$data['campaign'] = $campaign;
 		
+		$data = array();
+		$data['alert'] = $alert;
 		if ($this->user_model->isLoggedIn()) {
 			$user = $this->user_model->getLoggedInUser();
-			$data['is_owner'] = ($user->user_id==$campaign->user_id);
+			$data['is_owner'] = ($user->user_id==$alert->user_id);
 		} else {
-			if($pending_campaign_id = $this->session->userdata('pending_campaign_id')){
-				$data['pending_campaign_id'] = $pending_campaign_id;
-				$data['is_owner'] = ($campaign->campaign_id==$pending_campaign_id);
-			} else {
-				$data['is_owner'] = false;
-			}
+			$data['is_owner'] = false;
 		}
-		
-		
-		$this->layout->view('campaign/view', $data);
+		$this->layout->view('alert/view', $data, $alert->title);
 	}
 }
 
