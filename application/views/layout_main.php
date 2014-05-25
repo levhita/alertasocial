@@ -37,14 +37,16 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<?php if($_is_logged_in_): ?>
-				<li>
+				
 					<?php if($this->session->userdata('user')->type=='subscriber'): ?>	
-						<a href="/subscriber/edit"><i class="fa fa-user fa-lg"></i>
+						<li><a href="/subscriber/edit"><i class="fa fa-user fa-lg"></i>
+						<?php echo htmlentities($this->session->userdata('user')->username); ?></a></li>
 					<?php else: ?>
-						<a href="/ong/edit"><i class="fa fa-user fa-lg"></i>
+						<li><a href="/ong/edit"><i class="fa fa-user fa-lg"></i>
+						<?php echo htmlentities($this->session->userdata('user')->username); ?></a></li>
+						<li><a href="/alert/edit"><i class="fa fa-plus fa-lg"></i> Nueva Alerta</a></li>
 					<?php endif;?>
-					<?php echo htmlentities($this->session->userdata('user')->username); ?></a>
-				</li>
+					
 				<li><a href="/signout"><i class="fa fa-sign-out fa-lg"></i>
 					Cerrar Sesión
 				</a></li>

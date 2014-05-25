@@ -35,12 +35,6 @@ class User_model extends CI_Model {
         return $query->row();
     }
     
-    /*public function getLoggedInUser(){
-        $user = $this->session->userdata('user');
-
-        return $this->db->select('*')->from('user')->where('user_id', $user['user_id']); 
-    }*/
-
     public function getLoggedInUser(){
         $user = $this->session->userdata('user');
         return $this->getUserData($user->user_id);
