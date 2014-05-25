@@ -1,6 +1,6 @@
 
-<?php if($is_owner): ?>
-	<div class="container">
+<div class="container">
+	<?php if($is_owner): ?>
 		<div class="row">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
@@ -31,38 +31,31 @@
 				</div><!-- /.container-fluid -->
 			</nav>
 		</div>
-<?php endif; ?>
-		
-		
-		
-		
-		<div class="row">
-			<div class="col-md-6">
-				<h1><?php echo htmlentities($alert->title) ?></h1>
-			</div>
-			<div class="col-md-6 text-right" style="margin-top:20px">
-				<span class='st_twitter_large' displayText='Tweet'></span>
-				<span class='st_facebook_large' displayText='Facebook'></span>
-				<span class='st_googleplus_large' displayText='Google +'></span>
-				<span class='st_email_large' displayText='Email'></span>
-			</div>
+	<?php endif; ?>
+	<div class="row">
+		<div class="col-md-6">
+			<h1><?php echo htmlentities($alert->title) ?></h1>
 		</div>
-		
-		<div class="row">
-			<div class="col-md-12">
-			<?php echo nl2br(htmlentities($alert->content))?>
-			</div>
-		</div>
-		
-		<div class="row text-center">
-			<div class="col-md-12">
-				<a href="<?php echo htmlentities($alert->action_link)?>" class="btn btn-block btn-primary btn-lg" role="button">¡Asiste al evento!</a>
-			</div>
+		<div class="col-md-6 text-right" style="margin-top:20px">
+			<span class='st_twitter_large' displayText='Tweet'></span>
+			<span class='st_facebook_large' displayText='Facebook'></span>
+			<span class='st_googleplus_large' displayText='Google +'></span>
+			<span class='st_email_large' displayText='Email'></span>
 		</div>
 	</div>
+	
+	<div class="row">
+		<div class="col-md-12">
+		<?php echo nl2br(htmlentities($alert->content))?>
+		</div>
+	</div>
+	<hr/>
+	<div class="row text-center">
+		<div class="col-md-12">
+			<a href="<?php echo htmlentities($alert->action_link)?>" class="btn btn-block btn-primary btn-lg" role="button">¡Asiste al evento!</a>
+		</div>
 	</div>
 </div>
-
 
 <script src="/js/alert_view.js"></script>
 <?php if($is_owner): ?>
