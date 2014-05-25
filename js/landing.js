@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 	
-	$('#openModalButton').bind('click', function(){
+	/*$('#openModalButton').bind('click', function(){
 		$('#campaignModal').modal('show');
 		$('#nameInput').focus();
 	});
@@ -17,5 +17,5 @@ $( document ).ready(function() {
 			window.location.replace("/c/" + data.campaign.pretty_url );
 		});
 	
-	});
+	});*/
 });

@@ -38,11 +38,12 @@
 |
 */
 
-$route['c/(:any)'] = "/campaign/view/$1";
+//$route['c/(:any)'] = "/campaign/view/$1";
+//$route['campaign/new'] = "/campaign/create";
 $route['signout'] = "/twitter/signout";
 $route['signin'] = "/twitter/auth";
-$route['signin/new_campaign'] = "/twitter/auth/new_campaign";
-$route['campaign/new'] = "/campaign/create";
+$route['signin/subscriber'] = "/twitter/auth/subscriber";
+$route['signin/ong'] = "/twitter/auth/ong";
 $route['default_controller'] = "main";
 $route['404_override'] = '';
 

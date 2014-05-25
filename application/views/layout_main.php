@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?php echo (!empty($_title_for_layout_))?htmlentities($_title_for_layout_)." - ":'';?>PayIt</title>
+	<title><?php echo (!empty($_title_for_layout_))?htmlentities($_title_for_layout_)." - ":'';?> AvizorApp</title>
 
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -28,7 +28,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/">Pay It</a>
+			<a class="navbar-brand" href="/">AvizorApp</a>
 		</div>
 		<div class="collapse navbar-collapse">
 			<!--<ul class="nav navbar-nav">
@@ -41,11 +41,11 @@
 					<?php echo htmlentities($this->session->userdata('user')->username); ?>
 				</a></li>
 				<li><a href="/signout"><i class="fa fa-sign-out fa-lg"></i>
-					Sign out
+					Cerrar Sesión
 				</a></li>
 				<?php else: ?>
 				<li><a href="/signin"><i class="fa fa-twitter fa-lg"></i>
-					Sign in with Twitter
+					Inicia sesión con Twitter
 				</a></li>
 				<?php endif;?>
 			</ul>

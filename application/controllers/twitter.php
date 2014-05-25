@@ -45,30 +45,32 @@ class Twitter extends CI_Controller
 	 */
 	public function auth()
 	{
-		if ( $this->uri->segment(2)=='new_campaign' ) {
-			$this->session->set_userdata('new_campaign', true);
+		if ( $this->uri->segment(2)=='subscriber' ) {
+			$this->session->set_userdata('new_subscriber', true);
+		}
+
+		if ( $this->uri->segment(2)=='ong' ) {
+			$this->session->set_userdata('new_ong', true);
 		}
 
 		if($this->user_model->isLoggedIn())
 		{
 			// User is already authenticated. Add your user notification code here.
 			redirect(base_url('/'));
+
 		}
 		else
 		{
 			// Making a request for request_token
 			$request_token = $this->connection->getRequestToken(base_url('/twitter/callback'));
-
+			var_dump($request_token);
 			$this->session->set_userdata('request_token', $request_token['oauth_token']);
 			$this->session->set_userdata('request_token_secret', $request_token['oauth_token_secret']);
 			
-			if($this->connection->http_code == 200)
-			{
+			if ($this->connection->http_code == 200) {
 				$url = $this->connection->getAuthorizeURL($request_token);
 				redirect($url);
-			}
-			else
-			{
+			} else {
 				// An error occured. Make sure to put your error notification code here.
 				redirect(base_url('/'));
 			}
@@ -119,9 +121,14 @@ class Twitter extends CI_Controller
 				$this->session->unset_userdata('request_token');
 				$this->session->unset_userdata('request_token_secret');
 				
-				if ( $this->session->userdata('new_campaign') ) {
-					$this->session->unset_userdata('new_campaign');
-					redirect(base_url('/campaign/new'));	
+				if ( $this->session->userdata('new_ong') ) {
+					$this->session->unset_userdata('new_ong');
+					redirect(base_url('/ong/filldata'));	
+				}
+
+				if ( $this->session->userdata('new_subscriber') ) {
+					$this->session->unset_userdata('new_subscriber');
+					redirect(base_url('/subscriber/filldata'));	
 				}
 
 				redirect(base_url('/'));
@@ -140,8 +147,7 @@ class Twitter extends CI_Controller
 		redirect(base_url('/'));
     }
 
-	public function post($in_reply_to)
-	{
+	public function post($in_reply_to) {
 		$message = 'Test twit for PayIt' ;//$this->input->post('message');
 		if(!$message || mb_strlen($message) > 140 || mb_strlen($message) < 1)
 		{
