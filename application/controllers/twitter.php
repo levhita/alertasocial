@@ -128,7 +128,7 @@ class Twitter extends CI_Controller
 
 				if ( $this->session->userdata('new_subscriber') ) {
 					$this->session->unset_userdata('new_subscriber');
-					redirect(base_url('/subscriber/filldata'));	
+					redirect(base_url('/subscriber/edit'));	
 				}
 
 				redirect(base_url('/'));

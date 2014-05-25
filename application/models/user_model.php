@@ -42,7 +42,8 @@ class User_model extends CI_Model {
     }*/
 
     public function getLoggedInUser(){
-        return $this->session->userdata('user');
+        $user = $this->session->userdata('user');
+        return $this->getUserData($user->user_id);
     }
     
     public function userExists($twitter_user_id) {
