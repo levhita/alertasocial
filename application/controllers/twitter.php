@@ -63,7 +63,6 @@ class Twitter extends CI_Controller
 		{
 			// Making a request for request_token
 			$request_token = $this->connection->getRequestToken(base_url('/twitter/callback'));
-			var_dump($request_token);
 			$this->session->set_userdata('request_token', $request_token['oauth_token']);
 			$this->session->set_userdata('request_token_secret', $request_token['oauth_token_secret']);
 			
